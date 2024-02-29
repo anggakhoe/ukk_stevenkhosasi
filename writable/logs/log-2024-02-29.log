@@ -115,3 +115,40 @@ CRITICAL - 2024-02-29 16:15:16 --> Call to a member function getResult() on bool
 #4 C:\xampp\htdocs\ukk\public\index.php(37): CodeIgniter\CodeIgniter->run()
 #5 C:\xampp\htdocs\ukk\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
 #6 {main}
+ERROR - 2024-02-29 16:29:48 --> Unknown column 'peminjaman.stok_buku' in 'field list'
+CRITICAL - 2024-02-29 16:29:48 --> Call to a member function getResult() on bool
+#0 C:\xampp\htdocs\ukk\app\Controllers\Peminjaman.php(20): App\Models\M_buku->join4biasa()
+#1 C:\xampp\htdocs\ukk\system\CodeIgniter.php(832): App\Controllers\Peminjaman->index()
+#2 C:\xampp\htdocs\ukk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peminjaman))
+#3 C:\xampp\htdocs\ukk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\ukk\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 C:\xampp\htdocs\ukk\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+ERROR - 2024-02-29 16:30:51 --> Unknown column 'peminjaman.stok_buku' in 'field list'
+CRITICAL - 2024-02-29 16:30:51 --> Call to a member function getResult() on bool
+#0 C:\xampp\htdocs\ukk\app\Controllers\Peminjaman_peminjam.php(19): App\Models\M_buku->join4user('4')
+#1 C:\xampp\htdocs\ukk\system\CodeIgniter.php(832): App\Controllers\Peminjaman_peminjam->index()
+#2 C:\xampp\htdocs\ukk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peminjaman_peminjam))
+#3 C:\xampp\htdocs\ukk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\ukk\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 C:\xampp\htdocs\ukk\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+ERROR - 2024-02-29 16:31:22 --> Unknown column 'peminjaman.stok_buku' in 'field list'
+CRITICAL - 2024-02-29 16:31:22 --> Call to a member function getResult() on bool
+#0 C:\xampp\htdocs\ukk\app\Controllers\Peminjaman.php(20): App\Models\M_buku->join4biasa()
+#1 C:\xampp\htdocs\ukk\system\CodeIgniter.php(832): App\Controllers\Peminjaman->index()
+#2 C:\xampp\htdocs\ukk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peminjaman))
+#3 C:\xampp\htdocs\ukk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\ukk\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 C:\xampp\htdocs\ukk\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+CRITICAL - 2024-02-29 16:51:47 --> Invalid file: hopeui/peminjaman_peminjam/view.php
+#0 C:\xampp\htdocs\ukk\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('hopeui/peminjam...')
+#1 C:\xampp\htdocs\ukk\system\Common.php(1089): CodeIgniter\View\View->render('hopeui/peminjam...', Array, true)
+#2 C:\xampp\htdocs\ukk\app\Controllers\Peminjaman_peminjam.php(27): view('hopeui/peminjam...', Array)
+#3 C:\xampp\htdocs\ukk\system\CodeIgniter.php(832): App\Controllers\Peminjaman_peminjam->index()
+#4 C:\xampp\htdocs\ukk\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peminjaman_peminjam))
+#5 C:\xampp\htdocs\ukk\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\ukk\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 C:\xampp\htdocs\ukk\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#8 {main}
