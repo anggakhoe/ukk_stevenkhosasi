@@ -16,12 +16,11 @@ $logo = $builder->select('*')
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title><?=$title?></title>
-  
+
   <!-- Library / Plugin Css Build -->
   <link rel="stylesheet" href="<?=base_url('assets/css/core/libs.min.css')?>" />
   
-  <!-- Aos Animation Css -->
-  <link rel="stylesheet" href="<?=base_url('assets/vendor/aos/dist/aos.css')?>" />
+  
   
   <!-- Hope Ui Design System Css -->
   <link rel="stylesheet" href="<?=base_url('assets/css/hope-ui.min.css?v=2.0.0')?>" />
@@ -56,6 +55,9 @@ $logo = $builder->select('*')
   <link rel="stylesheet" href="<?=base_url('assets/extensions/filepond/filepond.css')?>" />
   <link rel="stylesheet" href="<?=base_url('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.css')?>"
   />
+
+  <!-- Rating JS -->
+  <!-- <script src="<?=base_url('assets/extensions/rater-js/rater.js')?>" charset="utf-8"></script> -->
   
 </head>
 

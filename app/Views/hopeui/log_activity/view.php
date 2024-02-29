@@ -3,20 +3,15 @@
       <div class="col-sm-12">
          <div class="card">
 
-          <div class="card-header d-flex justify-content-between">
-            <div class="header-title">
-               <a href="<?=base_url('data_level/create')?>" class="btn btn-primary"><i class="faj-button fa-solid fa-plus"></i>Tambah</a>
-            </div>
-         </div>
-
          <div class="card-body">
             <div class="table-responsive">
                <table id="datatable" class="table table-striped" data-toggle="data-table">
                   <thead>
                      <tr>
                         <th>No</th>
-                        <th>Nama Level</th>
-                        <th>Action</th>
+                        <th>User</th>
+                        <th>Nama Log</th>
+                        <th>Waktu Log</th>
                      </tr>
                   </thead>
 
@@ -27,14 +22,9 @@
                        ?>
                        <tr>
                         <td><?= $no++ ?></td>
-                        <td><?php echo $riz->nama_level ?></td> 
-                        <td>
-                           <a href="<?php echo base_url('data_level/edit/'. $riz->id_level)?>" class="btn btn-warning my-1"><i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i></a>
-
-                           <?php if ($riz->id_level != 1) { ?>
-                           <a href="<?php echo base_url('data_level/delete/'. $riz->id_level)?>" class="btn btn-danger my-1"><i class="fa-solid fa-trash"></i></a>
-                        <?php } ?>
-                        </td>
+                        <td><?php echo $riz->Username ?></td> 
+                        <td><?php echo $riz->nama_log ?></td> 
+                        <td><?php echo $riz->created_at_log ?></td> 
                      </tr>
                   <?php } ?>
                </tbody>

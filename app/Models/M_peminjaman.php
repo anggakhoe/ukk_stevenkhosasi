@@ -15,6 +15,10 @@ class M_peminjaman extends Model
 	{
 		return $this->db->table($table1)->where('deleted_at', null)->get()->getResult();
 	}
+	public function tampilid($table1, $id)	
+	{
+		return $this->db->table($table1)->where('deleted_at', null)->where('buku.BukuID', $id)->get()->getRow();
+	}
 	public function hapus($table, $where)
 	{
 		return $this->db->table($table)->delete($where);
@@ -45,18 +49,6 @@ class M_peminjaman extends Model
         ->get()
         ->getResult();
     }
-	public function join3($table1, $table2, $table3, $on, $on2)
-	{
-		return $this->db->table($table1)
-		->join($table2, $on, 'left')
-		->join($table3, $on2, 'left')
-		->where("$table1.deleted_at", null)
-		->where("$table2.deleted_at", null)
-		->where("$table3.deleted_at", null)
-        ->get()
-        ->getResult();
-    }
-	
     public function hitungSemuaHariIni()
     {
 	    $hariIni = date('Y-m-d'); // Mengambil tanggal hari ini
@@ -71,58 +63,128 @@ class M_peminjaman extends Model
 
 	// ----------------------------------- PEMINJAMAN -------------------------------------
 
-    public function getPeminjamanById($id)
-    {
-    	return $this->db->table('peminjaman')
-    	->select('peminjaman.*, buku.*, user.*') 
-    	->select('peminjaman.stok_buku AS stok_buku_peminjaman') 
-    	->join('buku', 'buku.id_buku = peminjaman.buku')
-    	->join('user', 'user.UserID = peminjaman.user')
-    	->where('peminjaman.buku', $id)
-    	->where('peminjaman.deleted_at', null)
-    	->orderBy('peminjaman.created_at', 'DESC')
-    	->get()
-    	->getResult();
-    }
+	public function getPeminjamanById($id)
+	{
+		return $this->db->table('peminjaman')
+		->select('peminjaman.*, buku.*, user.*') 
+		->select('peminjaman.stok_buku AS stok_buku_peminjaman') 
+		->join('buku', 'buku.BukuID = peminjaman.BukuID')
+		->join('user', 'user.UserID = peminjaman.UserID')
+		->where('peminjaman.BukuID', $id)
+		->where('peminjaman.deleted_at', null)
+		->orderBy('peminjaman.StatusPeminjaman', 'ASC')
+		->orderBy('peminjaman.created_at', 'DESC')
+		->get()
+		->getResult();
+	}
 
-    public function getBukuByIdPeminjaman($id)
-    {
+	public function getBukuByIdPeminjaman($id)
+	{
         // Query untuk mengambil data stok buku masuk berdasarkan ID
-    	$query = $this->db->table('peminjaman')
-    	->where('id_peminjaman', $id)
-    	->get();
+		$query = $this->db->table('peminjaman')
+		->where('id_peminjaman', $id)
+		->get();
 
         // Mengembalikan satu baris data stok buku masuk
-    	return $query->getRow();
-    }
+		return $query->getRow();
+	}
 
-    public function getAllPeminjamanInRange($tanggal_awal, $tanggal_akhir)
-    {
-    	return $this->db->table('peminjaman')
-    	->select('peminjaman.*, buku.*, user.*') 
-    	->select('peminjaman.stok_buku AS stok_buku_peminjaman') 
-    	->join('buku', 'buku.id_buku = peminjaman.buku')
-    	->join('user', 'user.UserID = peminjaman.user')
-    	->where('peminjaman.tgl_peminjaman >=', $tanggal_awal)
-    	->where('peminjaman.tgl_peminjaman <=', $tanggal_akhir)
-    	->where('peminjaman.deleted_at', null)
-    	->orderBy('peminjaman.created_at', 'DESC')
-    	->get()
-    	->getResult();
-    }
+	public function tampilPeminjamanByIdUser($idUser)
+	{
+		$builder = $this->db->table('peminjaman');
+		$builder->select('peminjaman.*, buku.*, kategoribuku_relasi.*, kategoribuku.*');
+		$builder->join('buku', 'buku.BukuID = peminjaman.BukuID');
+		$builder->join('kategoribuku_relasi', 'buku.BukuID = kategoribuku_relasi.BukuID');
+		$builder->join('kategoribuku', 'kategoribuku_relasi.KategoriID = kategoribuku.KategoriID');
+		$builder->where('peminjaman.UserID', $idUser);
+		$builder->where('peminjaman.deleted_at', null);
 
-    public function countPeminjamanByStatus($awal, $akhir, $status)
-    {
-    	return $this->db->table('peminjaman')
-    	->where('tgl_peminjaman >=', $awal)
-    	->where('tgl_peminjaman <=', $akhir)
-    	->where('status_peminjaman', $status)
-    	->countAllResults();
-    }
+		$results = $builder->get()->getResult();
+	}
+
+	// Peminjaman Per Periode
+
+	public function getAllPeminjamanInRange($tanggal_awal, $tanggal_akhir)
+	{
+		return $this->db->table('peminjaman')
+		->select('peminjaman.*, buku.*, user.*') 
+		->select('peminjaman.stok_buku AS stok_buku_peminjaman') 
+		->join('buku', 'buku.BukuID = peminjaman.BukuID')
+		->join('user', 'user.UserID = peminjaman.UserID')
+		->where('peminjaman.StatusPeminjaman =', 1)
+		->where('peminjaman.TanggalPeminjaman >=', $tanggal_awal)
+		->where('peminjaman.TanggalPeminjaman <=', $tanggal_akhir)
+		->where('peminjaman.deleted_at', null)
+		->orderBy('peminjaman.created_at', 'DESC')
+		->get()
+		->getResult();
+	}
+
+	public function countPeminjamanByStatus($awal, $akhir, $status)
+	{
+		return $this->db->table('peminjaman')
+		->where('TanggalPeminjaman >=', $awal)
+		->where('TanggalPengembalian <=', $akhir)
+		->where('StatusPeminjaman', $status)
+		->countAllResults();
+	}
+
+	// Peminjaman Per Hari
+
+	public function getAllPeminjamanPerHari($tanggal)
+	{
+		return $this->db->table('peminjaman')
+		->select('peminjaman.*, buku.*, user.*') 
+		->select('peminjaman.stok_buku AS stok_buku_peminjaman') 
+		->join('buku', 'buku.BukuID = peminjaman.BukuID')
+		->join('user', 'user.UserID = peminjaman.UserID')
+		->where('peminjaman.StatusPeminjaman =', 1)
+		->where('DATE(peminjaman.created_at)', $tanggal)
+		->where('peminjaman.deleted_at', null)
+		->orderBy('peminjaman.created_at', 'DESC')
+		->get()
+		->getResult();
+	}
+
+	// ----------------------------------------- PENGEMBALIAN -----------------------------------------
+
+	// Pengembalian Per Periode
+	public function getAllPengembalianInRange($tanggal_awal, $tanggal_akhir)
+	{
+		return $this->db->table('peminjaman')
+		->select('peminjaman.*, buku.*, user.*') 
+		->select('peminjaman.stok_buku AS stok_buku_peminjaman') 
+		->join('buku', 'buku.BukuID = peminjaman.BukuID')
+		->join('user', 'user.UserID = peminjaman.UserID')
+		->where('peminjaman.StatusPeminjaman =', 2)
+		->where('peminjaman.updated_at >=', $tanggal_awal)
+		->where('peminjaman.updated_at <=', $tanggal_akhir)
+		->where('peminjaman.deleted_at', null)
+		->orderBy('peminjaman.created_at', 'DESC')
+		->get()
+		->getResult();
+	}
+
+	// Pengembalian Per Hari
+	public function getAllPengembalianPerHari($tanggal)
+	{
+		return $this->db->table('peminjaman')
+		->select('peminjaman.*, buku.*, user.*') 
+		->select('peminjaman.stok_buku AS stok_buku_peminjaman') 
+		->join('buku', 'buku.BukuID = peminjaman.BukuID')
+		->join('user', 'user.UserID = peminjaman.UserID')
+		->where('peminjaman.StatusPeminjaman =', 2)
+		->where('DATE(peminjaman.updated_at)', $tanggal)
+		->where('peminjaman.deleted_at', null)
+		->orderBy('peminjaman.created_at', 'DESC')
+		->get()
+		->getResult();
+	}
+	
 
 	//CI4 Model
-    public function deletee($id)
-    {
-    	return $this->delete($id);
-    }
+	public function deletee($id)
+	{
+		return $this->delete($id);
+	}
 }

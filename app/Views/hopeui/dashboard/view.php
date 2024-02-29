@@ -12,7 +12,7 @@ $namaweb = $builder->select('nama_website')
 <div class="conatiner-fluid content-inner mt-n5 py-0">
    <div class="row">
       <div class="col-sm-12">
-         <div class="card" data-aos="fade-up" data-aos-delay="200">
+         <div class="card">
             <div class="card-body">
                <h2 class="text-center mb-2">Selamat Datang, <?= session()->get('username')?> 
             </div>
@@ -22,7 +22,7 @@ $namaweb = $builder->select('nama_website')
       <!-- <div class="overflow-hidden d-slider1 ">
          <ul class="p-0 m-0 mb-2 swiper-wrapper list-inline"> -->
 
-            <li class="swiper-slide card card-slide" data-aos="fade-in" data-aos-delay="200">
+            <li class="swiper-slide card card-slide">
                <div class="card-body">
                   <div class="progress-widget">
                      <!-- <div id="circle-progress-01" class="text-center circle-progress-01 circle-progress circle-progress-primary" data-min-value="0" data-max-value="100" data-value="100" data-type="percent">
@@ -39,7 +39,7 @@ $namaweb = $builder->select('nama_website')
                </div>
             </li>
 
-            <li class="swiper-slide card card-slide" data-aos="fade-up" data-aos-delay="200">
+            <li class="swiper-slide card card-slide">
                <div class="card-body">
                   <div class="progress-widget">
                      <!-- <div id="circle-progress-02" class="text-center circle-progress-01 circle-progress circle-progress-info" data-min-value="0" data-max-value="100" data-value="100" data-type="percent">
@@ -56,7 +56,7 @@ $namaweb = $builder->select('nama_website')
                </div>
             </li>
 
-            <li class="swiper-slide card card-slide" data-aos="fade-up" data-aos-delay="200">
+            <li class="swiper-slide card card-slide">
                <div class="card-body">
                   <div class="progress-widget">
                      <!-- <div id="circle-progress-03" class="text-center circle-progress-01 circle-progress circle-progress-success" data-min-value="0" data-max-value="100" data-value="100" data-type="percent">

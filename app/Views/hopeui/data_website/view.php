@@ -1,4 +1,4 @@
- <div class="conatiner-fluid content-inner mt-n5 py-0">
+<div class="conatiner-fluid content-inner mt-n5 py-0">
  	<div class="row">
  		<div class="col-sm-12">
  			<div class="card">
@@ -21,7 +21,7 @@
  									<th>Logo Website</th>
  									<th>Logo PDF</th>
  									<th>Logo Favicon</th>
- 									<th>Action</th>
+ 									<th>Aksi</th>
  								</tr>
  							</thead>
  							<?php

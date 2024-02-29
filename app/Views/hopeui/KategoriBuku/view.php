@@ -1,4 +1,4 @@
- <div class="conatiner-fluid content-inner mt-n5 py-0">
+<div class="conatiner-fluid content-inner mt-n5 py-0">
    <div class="row">
       <div class="col-sm-12">
          <div class="card">
@@ -16,7 +16,7 @@
                         <tr>
                            <th>No.</th>
                            <th>Nama Kategori</th>
-                           <th style="min-width: 100px">Action</th>
+                           <th style="min-width: 100px">Aksi</th>
                         </tr>
                      </thead>
 
